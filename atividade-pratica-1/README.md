@@ -1,0 +1,1 @@
+O código com a estrutura do grafo foi retirado do seguinte repositório: https://github.com/aistrate/AlgorithmsSedgewick/blob/master/4-Graphs/4-1-UndirectedGraphs/
