@@ -139,7 +139,7 @@ public class Eccentricity {
         GexfParser parser;
         String[] labels = null;
        
-        parser = new GexfParser("/home/andre/Documentos/Git/bcc6001-grafos/atividade-pratica-1/data/input/LesMiserables.gexf");
+        parser = new GexfParser("CAMINHO AQUI");
         graph = parser.getGrafo();
         
         Eccentricity eccentricityMetric = new Eccentricity(graph);
