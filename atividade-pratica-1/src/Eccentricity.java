@@ -7,7 +7,7 @@ import utils.StdOut;
 
 /*
 *   Classe que calcula a excentricidade de um dado vértice V.
-*   A excentricidade nada mais é do que o maior caminho entre esse vértice V e qualquer outro vértice do Grafo.
+*   A excentricidade é o maior caminho entre esse vértice V e qualquer outro vértice do Grafo.
 */ 
 public class Eccentricity {
     private final Graph G;
