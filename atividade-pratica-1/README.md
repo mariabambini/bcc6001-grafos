@@ -56,6 +56,18 @@ java -cp out GexfParser data/input/LesMiserables.gexf
 java -cp out Graph data/input/tinyG.txt
 ```
 
+Computar a métrica Closeness Centrality:
+
+```bash
+make run-cc LesMiserables.gexf
+```
+
+Computar a métrica Eccentricity:
+
+```bash
+make run-ecc LesMiserables.gexf
+```
+
 ## Limpeza
 
 ```bash

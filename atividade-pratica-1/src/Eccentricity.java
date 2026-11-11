@@ -1,8 +1,16 @@
+/*
+ * Data última atualização: 11/11/2026
+ * Implementa a classe Eccentricity que computa a excentricidade de cada vértice do grafo. 
+ */
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import utils.StdOut;
+import java.io.PrintWriter;
+import java.io.IOException;
+import javax.print.attribute.Size2DSyntax;
 
 
 /*
@@ -103,15 +111,34 @@ public class Eccentricity {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public void saveEccentricity(String outputPath) {
+        try (PrintWriter writer = new PrintWriter(outputPath)) {
+            writer.printf("%-8s | %s\n", "Vértice", "Excentricidade");
+
+            for (int v = 0; v < G.V(); v++) {
+                String eccStr = String.valueOf(ecc[v]);
+                writer.printf("%-8d | %s\n", v, eccStr);
+            }
+            
+            System.out.println("Excentricidade salva " + outputPath);
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar o arquivo: " + e.getMessage());
+        }
+    }
+
+   public static void main(String[] args) throws Exception {
+        if (args.length < 1) {
+            System.out.println("Uso: java Eccentricity <caminho_grafo>");
+            return;
+        }
+
         Graph graph;
         GexfParser parser;
-        String[] labels = null;
-       
-        parser = new GexfParser("/home/andre/Documentos/Git/bcc6001-grafos/atividade-pratica-1/data/input/LesMiserables.gexf");
+    
+        parser = new GexfParser(args[0]);
         graph = parser.getGrafo();
         
-        Eccentricity eccentricityMetric = new Eccentricity(graph);
-        eccentricityMetric.printEccentricities(labels);
+        Eccentricity eccMetric = new Eccentricity(graph);
+        eccMetric.saveEccentricity(args[1]);
     }
 }
