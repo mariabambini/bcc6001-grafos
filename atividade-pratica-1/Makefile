@@ -8,10 +8,10 @@ INPUT_DIR := data/input
 OUTPUT_DIR := data/output
 SOURCES := $(wildcard src/*.java src/utils/*.java)
 
-ARGS := $(filter-out run run-graph run-cc,$(MAKECMDGOALS))
+ARGS := $(filter-out run run-graph run-cc run-ecc,$(MAKECMDGOALS))
 GRAFO := $(firstword $(ARGS))
 
-.PHONY: setup install freeze compile run run-graph run-cc clean
+.PHONY: setup install freeze compile run run-graph run-cc run-ecc clean
 
 setup:
 	@python3 -m venv .venv
@@ -35,6 +35,11 @@ run: compile
 # Lê um grafo .txt 
 run-graph: compile
 	@$(JAVA) -cp $(OUT) Graph $(INPUT_DIR)/$(GRAFO)
+  
+# Computa a métrica Eccentricity de um grafo
+run-ecc: compile
+	@mkdir -p $(OUTPUT_DIR)
+	@$(JAVA) -cp $(OUT) Eccentricity $(INPUT_DIR)/$(GRAFO) $(OUTPUT_DIR)/eccentricity.txt
 
 # Computa a métrica Closeness Centrality de um grafo
 run-cc: compile

@@ -157,6 +157,15 @@ public class Graph {
     }
 
 
+    /**
+     * Retorna a métrica de excentricidade calculada para todos os vértices deste grafo.
+     *
+     * @return objeto Eccentricity associado a este grafo
+     */
+    public Eccentricity eccentricity() {
+        return new Eccentricity(this);
+    }
+
    /**
      * Test client.
      */

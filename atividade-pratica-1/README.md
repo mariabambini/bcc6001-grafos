@@ -17,7 +17,8 @@ Dado um grafo não dirigido de entrada, calcular algumas estatísticas usando al
 ├── src
 │   ├── Graph.java                 # estrutura de dados do grafo
 │   ├── GexfParser.java            # leitor de arquivos .gexf
-│   ├── ClosenessCentrality.java   # estrutura de dados para a métrica ClosenessCentrality
+│   ├── Eccentricity.java          # estrutura de dados para a métrica Eccentricity
+│   ├── ClosenessCentrality.java   # estrutura de dados para a métrica Closeness Centrality
 │   ├── parse.py
 │   └── utils/                     # Bag, In, Stack, StdIn, StdOut
 ├── out/                           # classes compiladas (gerada pelo make)
@@ -55,6 +56,12 @@ Manualmente, sem o Makefile:
 ```bash
 java -cp out GexfParser data/input/LesMiserables.gexf
 java -cp out Graph data/input/tinyG.txt
+```
+
+Computar a métrica Eccentricity:
+
+```bash
+make run-ecc LesMiserables.gexf
 ```
 
 Computar a métrica Closeness Centrality:
