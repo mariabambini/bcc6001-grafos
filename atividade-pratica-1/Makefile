@@ -5,6 +5,7 @@ JAVAC := javac
 JAVA := java
 OUT := out
 INPUT_DIR := data/input
+OUTPUT_DIR := data/output
 SOURCES := $(wildcard src/*.java src/utils/*.java)
 
 ARGS := $(filter-out run run-graph run-cc run-ecc,$(MAKECMDGOALS))
@@ -40,6 +41,7 @@ run-cc: compile
 	@mkdir -p $(OUTPUT_DIR)
 	@$(JAVA) -cp $(OUT) ClosenessCentrality $(INPUT_DIR)/$(GRAFO) $(OUTPUT_DIR)/closeness_centrality.txt
 
+# Computa a métrica Eccentricity de um grafo
 run-ecc: compile
 	@mkdir -p $(OUTPUT_DIR)
 	@$(JAVA) -cp $(OUT) Eccentricity $(INPUT_DIR)/$(GRAFO) $(OUTPUT_DIR)/eccentricity.txt
