@@ -35,16 +35,16 @@ run: compile
 # Lê um grafo .txt 
 run-graph: compile
 	@$(JAVA) -cp $(OUT) Graph $(INPUT_DIR)/$(GRAFO)
+  
+# Computa a métrica Eccentricity de um grafo
+run-ecc: compile
+	@mkdir -p $(OUTPUT_DIR)
+	@$(JAVA) -cp $(OUT) Eccentricity $(INPUT_DIR)/$(GRAFO) $(OUTPUT_DIR)/eccentricity.txt
 
 # Computa a métrica Closeness Centrality de um grafo
 run-cc: compile
 	@mkdir -p $(OUTPUT_DIR)
 	@$(JAVA) -cp $(OUT) ClosenessCentrality $(INPUT_DIR)/$(GRAFO) $(OUTPUT_DIR)/closeness_centrality.txt
-
-# Computa a métrica Eccentricity de um grafo
-run-ecc: compile
-	@mkdir -p $(OUTPUT_DIR)
-	@$(JAVA) -cp $(OUT) Eccentricity $(INPUT_DIR)/$(GRAFO) $(OUTPUT_DIR)/eccentricity.txt
 
 clean:
 	@rm -rf $(OUT)

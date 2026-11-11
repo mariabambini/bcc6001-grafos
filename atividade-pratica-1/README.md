@@ -12,14 +12,16 @@ Dado um grafo não dirigido de entrada, calcular algumas estatísticas usando al
 ```
 .
 ├── data
-│   ├── input/            # grafos de entrada (.gexf e .txt)
-│   └── output/           # resultados gerados
+│   ├── input/                     # grafos de entrada (.gexf e .txt)
+│   └── output/                    # resultados gerados
 ├── src
-│   ├── Graph.java        # estrutura de dados do grafo
-│   ├── GexfParser.java   # leitor de arquivos .gexf
+│   ├── Graph.java                 # estrutura de dados do grafo
+│   ├── GexfParser.java            # leitor de arquivos .gexf
+│   ├── Eccentricity.java          # estrutura de dados para a métrica Eccentricity
+│   ├── ClosenessCentrality.java   # estrutura de dados para a métrica Closeness Centrality
 │   ├── parse.py
-│   └── utils/            # Bag, In, Stack, StdIn, StdOut
-├── out/                  # classes compiladas (gerada pelo make)
+│   └── utils/                     # Bag, In, Stack, StdIn, StdOut
+├── out/                           # classes compiladas (gerada pelo make)
 ├── Makefile
 ├── README.md
 └── requirements.txt
@@ -56,16 +58,16 @@ java -cp out GexfParser data/input/LesMiserables.gexf
 java -cp out Graph data/input/tinyG.txt
 ```
 
-Computar a métrica Closeness Centrality:
-
-```bash
-make run-cc LesMiserables.gexf
-```
-
 Computar a métrica Eccentricity:
 
 ```bash
 make run-ecc LesMiserables.gexf
+```
+
+Computar a métrica Closeness Centrality:
+
+```bash
+make run-cc LesMiserables.gexf
 ```
 
 ## Limpeza
@@ -78,10 +80,10 @@ make clean
 
 ```bash
 make setup   # cria o .venv e instala as dependências
-make install # reinstala as dependências do requirements.txt
-make freeze  # atualiza o requirements.txt
+make install # instala as dependências em requirements.txt
+make freeze  # atualiza requirements.txt
 ```
 
-##
+## Notas
 
 O código com a estrutura do grafo foi retirado do seguinte repositório: https://github.com/aistrate/AlgorithmsSedgewick/blob/master/4-Graphs/4-1-UndirectedGraphs/
