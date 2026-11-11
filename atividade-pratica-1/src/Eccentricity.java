@@ -12,20 +12,13 @@ import utils.StdOut;
 public class Eccentricity {
     private final Graph G;
     private final int[] ecc;             // ecc[v] = excentricidade do vértice v
-    private final boolean[] connected;   // true se v alcança todos os vértices do grafo
-    private boolean isGraphConnected;    // true se o grafo como um todo é conexo
     private int radius;                  // menor excentricidade no grafo
     private int diameter;                // maior excentricidade no grafo
 
     public Eccentricity(Graph G) {
-        if (G == null) {
-            throw new IllegalArgumentException("O grafo fornecido não pode ser nulo.");
-        }
         this.G = G;
         int V = G.V();
         this.ecc = new int[V];
-        this.connected = new boolean[V];
-        this.isGraphConnected = true;
         this.radius = Integer.MAX_VALUE;
         this.diameter = 0;
 
@@ -64,11 +57,6 @@ public class Eccentricity {
         }
 
         this.ecc[source] = maxDist;
-        this.connected[source] = (reachableCount == V);
-
-        if (!this.connected[source]) {
-            this.isGraphConnected = false;
-        }
 
         if (maxDist < this.radius) {
             this.radius = maxDist;
@@ -80,17 +68,7 @@ public class Eccentricity {
 
     //  Retorna a excentricidade do vértice v.
     public int eccentricity(int v) {
-        validateVertex(v);
         return ecc[v];
-    }
-
-    public boolean reachesAll(int v) {
-        validateVertex(v);
-        return connected[v];
-    }
-
-    public boolean isConnected() {
-        return isGraphConnected;
     }
 
     public int radius() {
@@ -121,16 +99,7 @@ public class Eccentricity {
                            : String.valueOf(v);
             
             String eccStr = String.valueOf(ecc[v]);
-            if (!connected[v]) {
-                eccStr += " (local na comp.)";
-            }
             StdOut.printf("%-10d | %-15s\n", v, eccStr);
-        }
-    }
-
-    private void validateVertex(int v) {
-        if (v < 0 || v >= G.V()) {
-            throw new IndexOutOfBoundsException("Vértice " + v + " fora do intervalo [0, " + (G.V() - 1) + "]");
         }
     }
 
@@ -139,7 +108,7 @@ public class Eccentricity {
         GexfParser parser;
         String[] labels = null;
        
-        parser = new GexfParser("CAMINHO AQUI");
+        parser = new GexfParser("/home/andre/Documentos/Git/bcc6001-grafos/atividade-pratica-1/data/input/LesMiserables.gexf");
         graph = parser.getGrafo();
         
         Eccentricity eccentricityMetric = new Eccentricity(graph);
