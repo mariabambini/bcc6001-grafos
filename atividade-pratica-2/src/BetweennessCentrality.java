@@ -39,7 +39,7 @@ public class BetweennessCentrality {
         this.G = G;
         this.bc = new double[G.V()];
 
-        computeBetweennessCentrality();
+        computeBetweennessCentrality(true);
     }
 
     // Retorna a BC do vértice v
@@ -64,8 +64,7 @@ public class BetweennessCentrality {
     }
 
     // Computa a BC de um grafo G utilizando o algoritmo de Brandes.
-    // 
-    private void computeBetweennessCentrality() {
+    private void computeBetweennessCentrality(boolean norm) {
         int V = this.G.V();
 
         for (int s = 0; s < V; s++) {
@@ -119,7 +118,12 @@ public class BetweennessCentrality {
                 if (v != s) {
                     // Normalizado. Como o grafo é não direcionado, divide-se por 2 tanto delta[v] quanto (V-1)*(V-2),
                     // portanto bc[v] = (delta[v] / 2) / (((V-1)*(V-2)) / 2) == delta[v] / (V-1)*(V-2).
-                    this.bc[v] += (delta[v] / ((V - 1) * (V - 2)));
+                    if (norm) {
+                        this.bc[v] += (delta[v] / ((V - 1) * (V - 2)));
+                    }
+                    else {
+                        this.bc[v] += delta[v] / 2;
+                    }
                 }
             }
         }
