@@ -117,7 +117,9 @@ public class BetweennessCentrality {
                 }
 
                 if (v != s) {
-                    this.bc[v] += delta[v] / 2.0; // Dividido por dois por ser um grafo não direcionado
+                    // Normalizado. Como o grafo é não direcionado, divide-se por 2 tanto delta[v] quanto (V-1)*(V-2),
+                    // portanto bc[v] = (delta[v] / 2) / (((V-1)*(V-2)) / 2) == delta[v] / (V-1)*(V-2).
+                    this.bc[v] += (delta[v] / ((V - 1) * (V - 2)));
                 }
             }
         }
